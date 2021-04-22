@@ -32,15 +32,7 @@ jobs:
         spack find zlib
         spack find -lf zlib
         spack find -d zlib
-        spack graph zlib
-        spack compilers
-        #spack find -p gcc #No package matches the query: gcc
-        spack install gcc @8.3.0 
-        spack find -p gcc
-        #add gcc to Spack as an available compiler
-        #allow future packages to build with gcc@8.3.0
-        spack compiler add $(spack location -i gcc@8.3.0)
-        spack compiler remove gcc@8.3.0 #remove compilers        
+        spack graph zlib       
     # - name: "Customizing Compilers"
     #   run: |
     #     set -o errexit
