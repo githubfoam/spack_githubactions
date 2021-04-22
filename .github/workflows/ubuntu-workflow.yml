@@ -29,14 +29,10 @@ jobs:
         spack list #shows available packages
         spack list 'py-*' #The spack list command can also take a query string
         spack install zlib #Installing a package 
-    - name: "Customizing Compilers"
-      run: |
-        set -o errexit
-        set -o pipefail
-        set -o nounset
-        set -o xtrace
-        # set -eox pipefail #safety for script
-        cd ~ && whoami 
+        spack find zlib
+        spack find -lf zlib
+        spack find -d zlib
+        spack graph zlib
         spack compilers
         spack find -p gcc
         spack install gcc @8.3.0 
@@ -44,7 +40,23 @@ jobs:
         #add gcc to Spack as an available compiler
         #allow future packages to build with gcc@8.3.0
         spack compiler add $(spack location -i gcc@8.3.0)
-        spack compiler remove gcc@8.3.0 #remove compilers       
+        spack compiler remove gcc@8.3.0 #remove compilers        
+    # - name: "Customizing Compilers"
+    #   run: |
+    #     set -o errexit
+    #     set -o pipefail
+    #     set -o nounset
+    #     set -o xtrace
+    #     # set -eox pipefail #safety for script
+    #     cd ~ && whoami 
+    #     spack compilers
+    #     spack find -p gcc
+    #     spack install gcc @8.3.0 
+    #     spack find -p gcc
+    #     #add gcc to Spack as an available compiler
+    #     #allow future packages to build with gcc@8.3.0
+    #     spack compiler add $(spack location -i gcc@8.3.0)
+    #     spack compiler remove gcc@8.3.0 #remove compilers       
 
 
   ubuntu-1604-job:
