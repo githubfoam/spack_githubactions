@@ -1,9 +1,9 @@
-name: "Ubuntu docker CI workflow"
+name: "Ubuntu spack CI workflow"
 
 
 on:
   push:
-    branches: [ test ]
+    branches: [ dev ]
 
 jobs:
 
