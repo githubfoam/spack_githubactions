@@ -1,0 +1,98 @@
+name: "Ubuntu docker CI workflow"
+
+
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+
+# https://spack-tutorial.readthedocs.io/en/latest/tutorial_basics.html
+  ubuntu-latest-spack-job:
+    name: "ubuntu-latest spack job"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "deploy stack from git source"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        cd ~ && whoami 
+        git clone https://github.com/spack/spack ~/spack && cd ~/spack
+        git checkout releases/v0.16
+        . share/spack/setup-env.sh #source the spack setup script
+        spack list #shows available packages
+        spack list 'py-*' #The spack list command can also take a query string
+        spack install zlib #Installing a package 
+
+
+  ubuntu-1604-job:
+    name: "ubuntu-16.04"
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "deploy stack from git source"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        cd ~ && whoami 
+        git clone https://github.com/spack/spack ~/spack && cd ~/spack
+        git checkout releases/v0.16
+        . share/spack/setup-env.sh #source the spack setup script
+        spack list #shows available packages
+        spack list 'py-*' #The spack list command can also take a query string
+        spack install zlib #Installing a package       
+
+  ubuntu-1804-job:
+    name: "ubuntu-18.04"
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status  
+    - name: "deploy stack from git source"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        cd ~ && whoami 
+        git clone https://github.com/spack/spack ~/spack && cd ~/spack
+        git checkout releases/v0.16
+        . share/spack/setup-env.sh #source the spack setup script
+        spack list #shows available packages
+        spack list 'py-*' #The spack list command can also take a query string
+        spack install zlib #Installing a package       
+
+  ubuntu-2004-job:
+    name: "ubuntu-20.04"
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: hostnamectl status 
+    - name: "deploy stack from git source"
+      run: |
+        set -o errexit
+        set -o pipefail
+        set -o nounset
+        set -o xtrace
+        # set -eox pipefail #safety for script
+        cd ~ && whoami 
+        git clone https://github.com/spack/spack ~/spack && cd ~/spack
+        git checkout releases/v0.16
+        . share/spack/setup-env.sh #source the spack setup script
+        spack list #shows available packages
+        spack list 'py-*' #The spack list command can also take a query string
+        spack install zlib #Installing a package       
