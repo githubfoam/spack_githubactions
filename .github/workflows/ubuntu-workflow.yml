@@ -3,7 +3,7 @@ name: "Ubuntu spack CI workflow"
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ test ]
 
 jobs:
 
@@ -33,22 +33,7 @@ jobs:
         spack find -lf zlib
         spack find -d zlib
         spack graph zlib       
-    # - name: "Customizing Compilers"
-    #   run: |
-    #     set -o errexit
-    #     set -o pipefail
-    #     set -o nounset
-    #     set -o xtrace
-    #     # set -eox pipefail #safety for script
-    #     cd ~ && whoami 
-    #     spack compilers
-    #     spack find -p gcc
-    #     spack install gcc @8.3.0 
-    #     spack find -p gcc
-    #     #add gcc to Spack as an available compiler
-    #     #allow future packages to build with gcc@8.3.0
-    #     spack compiler add $(spack location -i gcc@8.3.0)
-    #     spack compiler remove gcc@8.3.0 #remove compilers       
+      
 
 
   ubuntu-1604-job:
@@ -71,7 +56,11 @@ jobs:
         . share/spack/setup-env.sh #source the spack setup script
         spack list #shows available packages
         spack list 'py-*' #The spack list command can also take a query string
-        spack install zlib #Installing a package       
+        spack install zlib #Installing a package 
+        spack find zlib
+        spack find -lf zlib
+        spack find -d zlib
+        spack graph zlib       
 
   ubuntu-1804-job:
     name: "ubuntu-18.04"
@@ -93,7 +82,11 @@ jobs:
         . share/spack/setup-env.sh #source the spack setup script
         spack list #shows available packages
         spack list 'py-*' #The spack list command can also take a query string
-        spack install zlib #Installing a package       
+        spack install zlib #Installing a package 
+        spack find zlib
+        spack find -lf zlib
+        spack find -d zlib
+        spack graph zlib       
 
   ubuntu-2004-job:
     name: "ubuntu-20.04"
@@ -115,4 +108,8 @@ jobs:
         . share/spack/setup-env.sh #source the spack setup script
         spack list #shows available packages
         spack list 'py-*' #The spack list command can also take a query string
-        spack install zlib #Installing a package       
+        spack install zlib #Installing a package 
+        spack find zlib
+        spack find -lf zlib
+        spack find -d zlib
+        spack graph zlib      
